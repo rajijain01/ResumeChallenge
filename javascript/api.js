@@ -1,4 +1,4 @@
-var APIURL = "https://bwb1tlk55g.execute-api.ap-southeast-2.amazonaws.com/Prod/count/"
+var APIURL = "https://rg53glgb83.execute-api.us-east-1.amazonaws.com/first-stage"
 fetch(APIURL)
 	.then(response => response.text())
 	.then((response) => {
