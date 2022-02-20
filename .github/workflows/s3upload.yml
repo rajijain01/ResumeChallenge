@@ -8,9 +8,9 @@ jobs:
     name: Upload to Amazon S3
     runs-on: ubuntu-latest
     # These permissions are needed to interact with GitHub's OIDC Token endpoint.
-#    permissions:
-#      id-token: write
-#      contents: read
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -28,6 +28,16 @@ jobs:
 
     - name: Copy files to the bucket with the AWS CLI
       run: |
-        aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}
+        aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} \
+          --delete \
+          --exclude ".*"
+
+    - name: invalidate cloudfront
+      run: |
+        aws create-invalidation \
+          --distribution-id ${{ secrets.AWS_CF_DISTRIBUTION_ID }} \
+          --paths "/*"  
+
+
 
     
