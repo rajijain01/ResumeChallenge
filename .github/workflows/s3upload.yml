@@ -32,11 +32,11 @@ jobs:
           --delete \
           --exclude ".*"
 
-    # - name: invalidate cloudfront
-    #   run: |
-    #     aws cloudfront create-invalidation \
-    #       --distribution-id ${{ secrets.AWS_CF_DISTRIBUTION_ID }} \
-    #       --paths "/*"  
+    - name: invalidate cloudfront
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.AWS_CF_DISTRIBUTION_ID }} \
+          --paths "/*"  
 
 
 
