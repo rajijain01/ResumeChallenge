@@ -2,7 +2,7 @@ name: Upload to S3 bucket
 on:
   push:
     branches:
-    - master
+    - main
 jobs:
   deploy:
     name: Upload to Amazon S3
